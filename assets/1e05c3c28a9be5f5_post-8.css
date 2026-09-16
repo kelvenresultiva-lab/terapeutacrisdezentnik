@@ -1,0 +1,50 @@
+.elementor-kit-8{--e-global-color-primary:#6EC1E4;--e-global-color-secondary:#54595F;--e-global-color-text:#7A7A7A;--e-global-color-accent:#61CE70;--e-global-color-c5bcaef:#0c0c0c;--e-global-color-a8a0f47:#4f342d;--e-global-color-3a314a7:#ffffff;--e-global-typography-primary-font-family:"Roboto";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Roboto Slab";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Roboto";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Roboto";--e-global-typography-accent-font-weight:500;--e-global-typography-51af363-font-family:"IvyPresto Display";--e-global-typography-51af363-font-size:4.0625rem;--e-global-typography-51af363-font-weight:400;--e-global-typography-51af363-line-height:96.4px;--e-global-typography-1508d9a-font-family:"IvyPresto Display";--e-global-typography-1508d9a-font-size:3.4375rem;--e-global-typography-1508d9a-font-weight:300;--e-global-typography-1508d9a-line-height:55px;--e-global-typography-d7d5c83-font-family:"Raleway";--e-global-typography-d7d5c83-font-size:0.875rem;--e-global-typography-d7d5c83-font-weight:400;--e-global-typography-d7d5c83-text-transform:uppercase;--e-global-typography-d7d5c83-line-height:15.54px;--e-global-typography-d7d5c83-letter-spacing:2.38px;--e-global-typography-aeaec4d-font-family:"Raleway";--e-global-typography-aeaec4d-font-size:1.25rem;--e-global-typography-aeaec4d-font-weight:400;--e-global-typography-aeaec4d-line-height:32px;}.elementor-kit-8 e-page-transition{background-color:#FFBC7D;}.elementor-kit-8 h1{font-family:"ivypresto-display", Sans-serif;font-size:22px;font-weight:300;}.elementor-kit-8 h2{font-family:"ivypresto-display", Sans-serif;font-size:15px;font-weight:300;font-style:italic;}.elementor-kit-8 h3{font-family:"ivypresto-display", Sans-serif;font-weight:600;font-style:italic;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1280px;}.e-con{--container-max-width:1280px;--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;}.elementor-widget:not(:last-child){margin-block-end:20px;}.elementor-element{--widgets-spacing:20px 20px;--widgets-spacing-row:20px;--widgets-spacing-column:20px;}{}h1.entry-title{display:var(--page-title-display);}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}:root { --preto:#0c0c0c; --branco:#ffffff; }
+/* Start Custom Fonts CSS */@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-400.eot');
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-400.eot?#iefix') format('embedded-opentype'),
+		url("50432fc4fcd6a916_raleway-400.woff2") format('woff2'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-400.woff') format('woff'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-400.ttf') format('truetype'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-400.svg#Raleway') format('svg');
+}
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-500.eot');
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-500.eot?#iefix') format('embedded-opentype'),
+		url("e4331f17c444974e_raleway-500.woff2") format('woff2'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-500.woff') format('woff'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-500.ttf') format('truetype'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-500.svg#Raleway') format('svg');
+}
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-700.eot');
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-700.eot?#iefix') format('embedded-opentype'),
+		url("76a3a5d0dd02ab1b_raleway-700.woff2") format('woff2'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-700.woff') format('woff'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-700.ttf') format('truetype'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-700.svg#Raleway') format('svg');
+}
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-800.eot');
+	src: url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-800.eot?#iefix') format('embedded-opentype'),
+		url("a1396fce3bd46726_raleway-800.woff2") format('woff2'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-800.woff') format('woff'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-800.ttf') format('truetype'),
+		url('https://psigabrielapezzato.com/wp-content/uploads/2026/07/raleway-800.svg#Raleway') format('svg');
+}
+/* End Custom Fonts CSS */

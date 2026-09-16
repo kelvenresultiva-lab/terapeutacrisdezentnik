@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Admin do Blog | João Batista de Sá</title>
+<link href="/assets/joao-logo-bj.png" rel="icon" sizes="32x32"/>
+<style>
+:root{
+  --jb-dark-green:#454B30;
+  --jb-cream:#F0E0C7;
+  --jb-cream-text:#35180A;
+  --jb-bg:#F6F5F1;
+  --jb-border:#DDD8CC;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',Raleway,sans-serif;background:var(--jb-bg);color:#333;}
+header.topbar{
+  background:var(--jb-dark-green);color:#fff;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+header.topbar h1{font-size:16px;margin:0;font-weight:600;}
+header.topbar button{
+  background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;
+  padding:6px 14px;border-radius:100px;cursor:pointer;font-size:13px;
+}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px;}
+#login-view{
+  max-width:360px;margin:80px auto;background:#fff;padding:32px;border-radius:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+#login-view h2{margin-top:0;font-size:18px;}
+input[type=password], input[type=text], input[type=url], input[type=date], textarea{
+  width:100%;padding:10px 12px;border:1px solid var(--jb-border);border-radius:8px;
+  font-size:14px;font-family:inherit;margin-top:6px;
+}
+label{display:block;font-size:13px;font-weight:600;color:#555;margin-top:16px;}
+button.primary{
+  background:var(--jb-dark-green);color:#fff;border:none;padding:11px 20px;
+  border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;margin-top:18px;
+}
+button.primary:disabled{opacity:.6;cursor:default;}
+.error{color:#b3261e;font-size:13px;margin-top:10px;}
+.hidden{display:none !important;}
+
+.card{background:#fff;border-radius:12px;padding:20px 22px;box-shadow:0 1px 6px rgba(0,0,0,.05);margin-bottom:20px;}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.card-header h2{font-size:16px;margin:0;}
+.btn-new{background:var(--jb-cream);color:var(--jb-cream-text);border:none;padding:9px 18px;border-radius:100px;font-weight:600;font-size:13px;cursor:pointer;}
+
+.post-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--jb-border);}
+.post-row:last-child{border-bottom:none;}
+.post-info strong{display:block;font-size:14px;}
+.post-info span{font-size:12px;color:#888;}
+.badge{font-size:11px;padding:2px 8px;border-radius:100px;margin-left:8px;}
+.badge.pub{background:#dff3e0;color:#1e7a2e;}
+.badge.draft{background:#f1eadb;color:#8a6d1f;}
+.post-actions button{
+  background:none;border:1px solid var(--jb-border);padding:6px 12px;border-radius:6px;
+  font-size:12px;cursor:pointer;margin-left:6px;
+}
+.post-actions button.danger{color:#b3261e;border-color:#e7c3bf;}
+
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+.toolbar button{
+  border:1px solid var(--jb-border);background:#fff;border-radius:6px;padding:6px 10px;
+  cursor:pointer;font-size:13px;
+}
+.editor{
+  border:1px solid var(--jb-border);border-radius:8px;padding:12px 14px;min-height:220px;
+  margin-top:6px;font-size:14px;line-height:1.6;outline:none;
+}
+.editor:empty:before{content:attr(data-placeholder);color:#aaa;}
+.row2{display:flex;gap:16px;}
+.row2 > div{flex:1;}
+.cover-preview{max-width:200px;border-radius:8px;margin-top:8px;display:block;}
+.hint{font-size:12px;color:#888;margin-top:4px;}
+.form-actions{display:flex;gap:10px;align-items:center;margin-top:22px;}
+.link-btn{background:none;border:none;color:#555;cursor:pointer;font-size:13px;text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div id="login-view" class="hidden">
+  <h2>Acesso ao Blog</h2>
+  <label>E-mail
+    <input type="text" id="login-email" placeholder="seu@email.com" autocomplete="username"/>
+  </label>
+  <label>Senha
+    <input type="password" id="login-password" placeholder="Digite a senha" autocomplete="current-password"/>
+  </label>
+  <button class="primary" id="login-btn">Entrar</button>
+  <div class="error hidden" id="login-error"></div>
+</div>
+
+<div id="app-view" class="hidden">
+  <header class="topbar">
+    <h1>Blog — João Batista de Sá</h1>
+    <button id="logout-btn">Sair</button>
+  </header>
+  <div class="wrap">
+
+    <div class="card" id="list-card">
+      <div class="card-header">
+        <h2>Seus posts</h2>
+        <button class="btn-new" id="new-post-btn">+ Novo post</button>
+      </div>
+      <div id="posts-list"><p class="hint">Carregando...</p></div>
+    </div>
+
+    <div class="card hidden" id="editor-card">
+      <div class="card-header">
+        <h2 id="editor-title">Novo post</h2>
+        <button class="link-btn" id="cancel-edit-btn">Cancelar</button>
+      </div>
+
+      <label>Título
+        <input type="text" id="f-title" placeholder="Título do artigo"/>
+      </label>
+
+      <label>Resumo (aparece no card da home)
+        <textarea id="f-excerpt" rows="2" placeholder="Um resumo curto e chamativo..."></textarea>
+      </label>
+
+      <div class="row2">
+        <div>
+          <label>Data
+            <input type="date" id="f-date"/>
+          </label>
+        </div>
+        <div>
+          <label>Imagem de capa (opcional)
+            <input type="file" id="f-cover-file" accept="image/png,image/jpeg,image/webp"/>
+          </label>
+          <div class="hint" id="cover-status"></div>
+          <img id="cover-preview" class="cover-preview hidden"/>
+        </div>
+      </div>
+
+      <label>Conteúdo do artigo</label>
+      <div class="toolbar">
+        <button type="button" data-cmd="bold"><b>B</b></button>
+        <button type="button" data-cmd="italic"><i>I</i></button>
+        <button type="button" data-cmd="formatBlock" data-value="H2">H2</button>
+        <button type="button" data-cmd="formatBlock" data-value="H3">H3</button>
+        <button type="button" data-cmd="insertUnorderedList">• Lista</button>
+        <button type="button" data-cmd="createLink">Link</button>
+        <button type="button" data-cmd="formatBlock" data-value="P">Parágrafo</button>
+      </div>
+      <div class="editor" id="f-content" contenteditable="true" data-placeholder="Escreva o artigo aqui..."></div>
+
+      <label style="display:flex;align-items:center;gap:8px;margin-top:20px;">
+        <input type="checkbox" id="f-published" style="width:auto;margin:0;"/>
+        Publicar agora (fica visível no site)
+      </label>
+
+      <div class="form-actions">
+        <button class="primary" id="save-btn">Salvar</button>
+        <span class="error hidden" id="editor-error"></span>
+        <span class="hint hidden" id="editor-saving">Salvando e publicando no GitHub... isso pode levar alguns segundos.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const $ = (sel) => document.querySelector(sel);
+let currentSlug = null; // null = criando novo
+let pendingCoverUrl = '';
+
+async function api(path, opts) {
+  const res = await fetch(path, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    ...opts,
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro na requisição.');
+  return data;
+}
+
+function showLogin() {
+  $('#login-view').classList.remove('hidden');
+  $('#app-view').classList.add('hidden');
+}
+function showApp() {
+  $('#login-view').classList.add('hidden');
+  $('#app-view').classList.remove('hidden');
+  loadPosts();
+}
+
+async function checkSession() {
+  try {
+    const { authenticated } = await api('/api/admin/session');
+    if (authenticated) showApp(); else showLogin();
+  } catch {
+    showLogin();
+  }
+}
+
+$('#login-btn').addEventListener('click', async () => {
+  const email = $('#login-email').value;
+  const password = $('#login-password').value;
+  $('#login-error').classList.add('hidden');
+  try {
+    await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+    showApp();
+  } catch (e) {
+    $('#login-error').textContent = e.message;
+    $('#login-error').classList.remove('hidden');
+  }
+});
+$('#login-email').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') $('#login-btn').click();
+});
+$('#login-password').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') $('#login-btn').click();
+});
+
+$('#logout-btn').addEventListener('click', async () => {
+  await api('/api/admin/logout', { method: 'POST' });
+  showLogin();
+});
+
+async function loadPosts() {
+  const list = $('#posts-list');
+  list.innerHTML = '<p class="hint">Carregando...</p>';
+  try {
+    const { posts } = await api('/api/admin/posts');
+    if (!posts.length) {
+      list.innerHTML = '<p class="hint">Nenhum post ainda. Clique em "Novo post" para começar.</p>';
+      return;
+    }
+    list.innerHTML = '';
+    posts.forEach((p) => {
+      const row = document.createElement('div');
+      row.className = 'post-row';
+      row.innerHTML = `
+        <div class="post-info">
+          <strong>${escapeHtml(p.title)}<span class="badge ${p.published ? 'pub' : 'draft'}">${p.published ? 'Publicado' : 'Rascunho'}</span></strong>
+          <span>${p.date || ''}</span>
+        </div>
+        <div class="post-actions">
+          <button data-action="edit">Editar</button>
+          <button data-action="delete" class="danger">Excluir</button>
+        </div>`;
+      row.querySelector('[data-action="edit"]').addEventListener('click', () => editPost(p.slug));
+      row.querySelector('[data-action="delete"]').addEventListener('click', () => deletePost(p.slug, p.title));
+      list.appendChild(row);
+    });
+  } catch (e) {
+    list.innerHTML = `<p class="error">${escapeHtml(e.message)}</p>`;
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function openEditor() {
+  $('#list-card').classList.add('hidden');
+  $('#editor-card').classList.remove('hidden');
+}
+function closeEditor() {
+  $('#editor-card').classList.add('hidden');
+  $('#list-card').classList.remove('hidden');
+  loadPosts();
+}
+
+$('#new-post-btn').addEventListener('click', () => {
+  currentSlug = null;
+  pendingCoverUrl = '';
+  $('#editor-title').textContent = 'Novo post';
+  $('#f-title').value = '';
+  $('#f-excerpt').value = '';
+  $('#f-date').value = new Date().toISOString().slice(0, 10);
+  $('#f-content').innerHTML = '';
+  $('#f-published').checked = false;
+  $('#cover-preview').classList.add('hidden');
+  $('#cover-status').textContent = '';
+  $('#f-cover-file').value = '';
+  $('#editor-error').classList.add('hidden');
+  openEditor();
+});
+
+$('#cancel-edit-btn').addEventListener('click', closeEditor);
+
+async function editPost(slug) {
+  try {
+    const { post } = await api('/api/admin/posts/' + encodeURIComponent(slug));
+    currentSlug = slug;
+    pendingCoverUrl = post.coverImage || '';
+    $('#editor-title').textContent = 'Editar post';
+    $('#f-title').value = post.title;
+    $('#f-excerpt').value = post.excerpt || '';
+    $('#f-date').value = post.date;
+    $('#f-content').innerHTML = post.contentHtml || '';
+    $('#f-published').checked = !!post.published;
+    if (post.coverImage) {
+      $('#cover-preview').src = post.coverImage;
+      $('#cover-preview').classList.remove('hidden');
+    } else {
+      $('#cover-preview').classList.add('hidden');
+    }
+    $('#cover-status').textContent = '';
+    $('#f-cover-file').value = '';
+    $('#editor-error').classList.add('hidden');
+    openEditor();
+  } catch (e) {
+    alert(e.message);
+  }
+}
+
+async function deletePost(slug, title) {
+  if (!confirm(`Excluir o post "${title}"? Essa ação não pode ser desfeita.`)) return;
+  try {
+    await api('/api/admin/posts/' + encodeURIComponent(slug), { method: 'DELETE' });
+    loadPosts();
+  } catch (e) {
+    alert(e.message);
+  }
+}
+
+document.querySelectorAll('.toolbar button').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const cmd = btn.dataset.cmd;
+    $('#f-content').focus();
+    if (cmd === 'createLink') {
+      const url = prompt('Cole o link (https://...)');
+      if (url) document.execCommand(cmd, false, url);
+      return;
+    }
+    document.execCommand(cmd, false, btn.dataset.value || null);
+  });
+});
+
+$('#f-cover-file').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  $('#cover-status').textContent = 'Enviando imagem...';
+  try {
+    const dataBase64 = await fileToBase64(file);
+    const { url } = await api('/api/admin/upload', {
+      method: 'POST',
+      body: JSON.stringify({ filename: file.name.split('.')[0], contentType: file.type, dataBase64 }),
+    });
+    pendingCoverUrl = url;
+    $('#cover-preview').src = url;
+    $('#cover-preview').classList.remove('hidden');
+    $('#cover-status').textContent = 'Imagem enviada.';
+  } catch (err) {
+    $('#cover-status').textContent = 'Erro ao enviar imagem: ' + err.message;
+  }
+});
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+$('#save-btn').addEventListener('click', async () => {
+  const title = $('#f-title').value.trim();
+  $('#editor-error').classList.add('hidden');
+  if (!title) {
+    $('#editor-error').textContent = 'Título é obrigatório.';
+    $('#editor-error').classList.remove('hidden');
+    return;
+  }
+  const payload = {
+    title,
+    excerpt: $('#f-excerpt').value.trim(),
+    date: $('#f-date').value,
+    coverImage: pendingCoverUrl,
+    contentHtml: $('#f-content').innerHTML,
+    published: $('#f-published').checked,
+  };
+  $('#save-btn').disabled = true;
+  $('#editor-saving').classList.remove('hidden');
+  try {
+    if (currentSlug) {
+      await api('/api/admin/posts/' + encodeURIComponent(currentSlug), { method: 'PUT', body: JSON.stringify(payload) });
+    } else {
+      await api('/api/admin/posts', { method: 'POST', body: JSON.stringify(payload) });
+    }
+    closeEditor();
+  } catch (e) {
+    $('#editor-error').textContent = e.message;
+    $('#editor-error').classList.remove('hidden');
+  } finally {
+    $('#save-btn').disabled = false;
+    $('#editor-saving').classList.add('hidden');
+  }
+});
+
+checkSession();
+</script>
+</body>
+</html>

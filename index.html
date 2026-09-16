@@ -289,6 +289,21 @@ html,body{opacity:1!important;visibility:visible!important}
 </div>
 </div>
 </section>
+<script>
+(function(){
+  var hero = document.querySelector('.elementor-element-eedaf64');
+  var waFloat = document.querySelector('.elementor-element-4d2ffce');
+  if (!hero || !waFloat) return;
+  function toggleWaFloat(){
+    if (window.innerWidth > 767) { waFloat.style.display = ''; return; }
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    waFloat.style.display = heroBottom > 100 ? 'none' : '';
+  }
+  toggleWaFloat();
+  window.addEventListener('scroll', toggleWaFloat, { passive: true });
+  window.addEventListener('resize', toggleWaFloat);
+})();
+</script>
 <style>
 @media(min-width:1025px){.elementor-element-83466e4{max-width:600px;}}
 </style>

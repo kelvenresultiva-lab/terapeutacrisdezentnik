@@ -263,9 +263,14 @@ html,body{opacity:1!important;visibility:visible!important}
 .cd-hero-mobile-btn{width:100%;max-width:380px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;border-radius:100px;font-family:Raleway,sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;margin-bottom:14px;}
 .cd-hero-mobile-btn.cd-primary{background:#15294D;color:#FFFFFF;}
 .cd-hero-mobile-btn.cd-secondary{background:transparent;color:#15294D;border:1.5px solid #15294D;}
-.cd-hero-mobile-partner{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;font-family:'IvyPresto Display',serif;font-size:13px;color:#8a6a4f;}
-.cd-hero-mobile-partner img{height:28px;width:28px;}
-.cd-hero-mobile-partner .cd-partner-sep{width:1px;height:26px;background:#C08A5C;}
+.cd-hero-mobile-partner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;margin-top:14px;font-family:'IvyPresto Display',serif;font-size:13px;color:#8a6a4f;max-width:320px;}
+.cd-hero-mobile-partner span{white-space:nowrap;}
+.cd-hero-mobile-partner img{height:28px;width:28px;flex-shrink:0;}
+.cd-hero-mobile-partner .cd-partner-sep{width:1px;height:26px;background:#C08A5C;flex-shrink:0;}
+@media(max-width:360px){
+.cd-hero-mobile-partner{font-size:12px;gap:6px 8px;max-width:280px;}
+.cd-hero-mobile-partner .cd-partner-sep{display:none;}
+}
 </style>
 <div class="cd-hero-desktop-only">
 <div class="elementor-element elementor-element-6d01e9d elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-initial elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="6d01e9d" data-widget_type="heading.default">
@@ -331,45 +336,7 @@ html,body{opacity:1!important;visibility:visible!important}
 <style>
 @media(min-width:1025px){.elementor-element-83466e4{max-width:600px;}}
 </style>
-<style>
-.tf-marquee{width:100%;overflow:hidden;background:#15294D;height:72px;display:flex;align-items:center;border-top:1px solid #C9A876;}
-.tf-marquee-track{display:flex;align-items:center;width:max-content;flex-shrink:0;animation:tf-marquee-scroll 25s linear infinite;}
-.tf-marquee-group{display:flex;align-items:center;width:max-content;flex-shrink:0;}
-.tf-marquee-unit{display:flex;align-items:center;gap:14px;margin-right:60px;flex-shrink:0;}
-.tf-marquee-logo{height:44px !important;width:auto !important;max-width:none !important;display:block;}
-.tf-marquee-text{font-family:'Montserrat',sans-serif;font-weight:300;font-size:21px;letter-spacing:0.12em;text-transform:uppercase;color:#F0E0C7;white-space:nowrap;line-height:1;}
-@keyframes tf-marquee-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-@media(max-width:767px){
-.tf-marquee{height:60px;}
-.tf-marquee-logo{height:34px !important;}
-.tf-marquee-text{font-size:16px;}
-}
-@media(prefers-reduced-motion:reduce){.tf-marquee-track{animation:none;}}
-</style>
-<div class="tf-marquee" aria-label="Cris Dezentnik">
-<div class="tf-marquee-track">
-<div class="tf-marquee-group">
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-</div>
-<div class="tf-marquee-group" aria-hidden="true">
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-<div class="tf-marquee-unit"><img alt="" class="tf-marquee-logo" src="assets/cris-marquee-logo.png"/><span class="tf-marquee-text">Cris Dezentnik</span></div>
-</div>
-</div>
-</div>
+<div style="width:100%;display:flex;justify-content:center;padding:36px 20px;background:#FDFDFD;"><hr style="width:60px;height:2px;background-color:#C08A5C;border:none;margin:0;"/></div>
 <section class="elementor-element elementor-element-c894bf3 e-con e-atomic-element e-flexbox-base e-c894bf3-3450131" data-e-type="e-flexbox" data-element_type="e-flexbox" data-id="c894bf3" data-interaction-id="c894bf3" id="sobremim">
 <div class="e-image-base e-c859939-de0f020 atomik-entrada-7" style="display:flex;align-items:flex-start;gap:10px;width:100%;max-width:574px;max-height:none;height:auto;">
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;">

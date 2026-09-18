@@ -475,12 +475,14 @@ html,body{opacity:1!important;visibility:visible!important}
 .tf-map-card{height:100%;position:relative;border-radius:15px;overflow:hidden;min-height:280px;}
 .tf-map-caption{position:absolute;left:0;right:0;bottom:0;background:#15294D;color:#F0E0C7;font-family:'Raleway',sans-serif;font-size:12px;text-align:center;padding:8px 12px;}
 @media(max-width:767px){
-.tf-format-wrap{padding:48px 20px 48px;}
-.tf-format-grid{grid-template-columns:1fr;gap:16px;}
+.tf-format-wrap{padding:48px 20px 48px;display:flex;flex-direction:column;gap:16px;}
+.tf-format-grid{display:contents;}
 .tf-format-card{padding:32px 24px;}
+.tf-format-card.tf-format-dark{order:1;}
+.tf-invest-wrap{order:2;margin-top:0;}
+.tf-map-card{order:3;min-height:220px;}
 .tf-format-title{font-size:1.75rem;}
 .tf-format-desc{font-size:1rem;}
-.tf-map-card{min-height:220px;}
 }
 </style>
 <section id="formato-investimento">

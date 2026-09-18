@@ -180,9 +180,11 @@ html,body{opacity:1!important;visibility:visible!important}
 <div class="elementor-element elementor-element-67f1493 elementor-widget__width-initial elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="67f1493" data-widget_type="image.default">
 <style>
 .cd-header-logo{display:flex !important;align-items:center;gap:10px;text-decoration:none;white-space:nowrap;}
-.cd-header-logo img{height:36px;width:auto;flex-shrink:0;display:block;}
-.cd-header-logo .cd-header-logo-text{font-family:'IvyPresto Display',serif;font-size:19px;color:#FFFFFF;line-height:1;display:block;}
-@media(max-width:600px){.cd-header-logo img{height:30px;}.cd-header-logo .cd-header-logo-text{font-size:16px;}}
+.cd-header-logo img{height:40px;width:auto;flex-shrink:0;display:block;}
+.cd-header-logo .cd-header-logo-text{font-family:'IvyPresto Display',serif;font-size:21px;color:#FFFFFF;line-height:1;display:block;}
+@media(max-width:600px){.cd-header-logo img{height:40px;}.cd-header-logo .cd-header-logo-text{font-size:21px;}}
+.elementor-menu-toggle{background-color:transparent !important;color:#FFFFFF !important;}
+.elementor-menu-toggle .e-font-icon-svg,.elementor-menu-toggle svg{fill:#FFFFFF !important;}
 .elementor-nav-menu .elementor-item{font-size:17px !important;}
 .elementor-element-d2050a6{width:auto !important;max-width:none !important;--container-widget-width:auto !important;flex-shrink:0;}
 .elementor-element-d2050a6 .elementor-button{width:auto !important;padding:16px 30px !important;white-space:nowrap;}
@@ -190,8 +192,8 @@ html,body{opacity:1!important;visibility:visible!important}
 .elementor-nav-menu .elementor-item{font-size:16px !important;}
 }
 @media(max-width:767px){
-.elementor-element-d2050a6{width:auto !important;max-width:none !important;--container-widget-width:auto !important;}
-.elementor-element-d2050a6 .elementor-button{padding:12px 22px !important;font-size:14px !important;}
+.elementor-element-d2050a6{display:none !important;}
+.elementor-element-abaec62.elementor-hidden-mobile{display:block !important;}
 }
 </style>
 <div class="elementor-widget-container">
@@ -1416,6 +1418,22 @@ html, body {
 <!-- Atomik: atomik-menu-close:v1 -->
 <script>
 (function(){var t=document.querySelector(".elementor-menu-toggle");if(!t)return;document.querySelectorAll(".menu-item").forEach(function(l){l.addEventListener("click",function(){t.classList.toggle("elementor-active");});});document.addEventListener("elementor/popup/show",function(){var t2=document.querySelector(".elementor-menu-toggle");if(!t2)return;document.querySelectorAll(".menu-item").forEach(function(l){l.addEventListener("click",function(){t2.classList.toggle("elementor-active");});});});})();
+</script>
+<!-- Atomik: cd-mobile-menu-toggle-fix:v1 -->
+<script>
+(function(){
+var toggle=document.querySelector('.elementor-menu-toggle');
+var dropdown=document.querySelector('.elementor-nav-menu--dropdown');
+if(!toggle||!dropdown)return;
+toggle.addEventListener('click',function(){
+var open=toggle.classList.contains('elementor-active');
+var next=!open;
+toggle.classList.toggle('elementor-active',next);
+toggle.setAttribute('aria-expanded',String(next));
+dropdown.setAttribute('aria-hidden',String(!next));
+dropdown.style.setProperty('--menu-height',next?(dropdown.scrollHeight+'px'):'0');
+});
+})();
 </script>
 <!-- Atomik: carrossel-defaults -->
 <script>(function(){

@@ -48,6 +48,15 @@ function renderPostPage(post) {
 
   gtag('config', 'AW-18483625002');
 </script>
+<!-- Event snippet for Contato conversion page, fired on click of any WhatsApp button -->
+<script>
+document.addEventListener('click', function(e) {
+  var link = e.target.closest('a[href*="api.whatsapp.com"]');
+  if (link) {
+    gtag('event', 'conversion', {'send_to': 'AW-18483625002/pWNXCKzorJQdEKr41u1E'});
+  }
+});
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="index, follow" name="robots"/>

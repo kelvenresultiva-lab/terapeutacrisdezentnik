@@ -39,27 +39,6 @@ function renderPostPage(post) {
 
   return `<!DOCTYPE html>
 <html lang="pt-BR"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18441041326"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18441041326');
-</script>
-<!-- Event snippet for Contato (1) conversion page, fired on click of any WhatsApp button -->
-<script>
-document.addEventListener('click', function(e) {
-  var link = e.target.closest('a[href*="api.whatsapp.com"]');
-  if (link) {
-    gtag('event', 'conversion', {
-        'send_to': 'AW-18441041326/PX_OCObYl_McEK7rr9lE',
-        'value': 1.0,
-        'currency': 'BRL'
-    });
-  }
-});
-</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="index, follow" name="robots"/>
